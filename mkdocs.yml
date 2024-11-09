@@ -1,4 +1,4 @@
-site_name: Prácticas
+site_name: Despliegue de aplicaciones web
 site_url: https://mydomain.org/mysite
 theme:
   name: material
@@ -10,5 +10,6 @@ markdown_extensions:
 
 nav:
   - 'Tema 3': 
+    - 'Teoría': 'index.md'
     - 'Prácticas':
       - 'Práctica 3.1': 'practica1.md'
