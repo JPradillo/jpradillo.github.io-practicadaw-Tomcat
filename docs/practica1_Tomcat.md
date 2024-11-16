@@ -162,7 +162,7 @@ Tras generar esta aplicación, los comandos finales que se utilizan en Maven par
 Así pues, tras el despliegue con Maven nos indicará que todo ha ido correctamente con un mensaje de `BUILD SUCCESS`, tal que así:
 
 <p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-6.png" alt="BUILD SUCCESS">
+    <img src="../docs/assets/imagenes/practica1/Tomcat/image-6.png" alt="BUILD SUCCESS">
 </p>
 
 Y, accediendo a través de la GUI, debemos ver que la aplicación está desplegado y que podemos acceder a ella perfectamente:
