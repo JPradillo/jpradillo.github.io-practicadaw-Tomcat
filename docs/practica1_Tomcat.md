@@ -28,9 +28,7 @@ En conclusión, no es raro encontrarse en el mundo real un proyecto a desplegar 
 
 Esta práctica es muy sencilla y va a consistir en realizar la instalación del servidor de aplicaciones Tomcat 9, en una máquina virtual corriendo Debian 11 Bullseye.
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image.png" alt="Apache Tomcat">
-</p>
+![Apache Tomcat](assets/imagenes/practica1/Tomcat/image.png)
 
 Se puede hacer tanto con el administrador de paquetes `apt` como de forma manual. La forma más recomendable por su sencillez es la primera.
 
@@ -46,9 +44,7 @@ Realizaremos el despliegue manual de una aplicación ya previamente empaquetada 
 
 1. Buscamos la sección que nos permite desplegar un WAR manualmente, seleccionamos nuestro archivo y lo desplegamos.
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-1.png" alt="Desplegar">
-</p>
+![Desplegar](assets/imagenes/practica1/Tomcat/image-1.png)
 
 Tras estos pasos, se nos listará la aplicación ya desplegada como un directorio más y podremos acceder a ella.
 
@@ -89,9 +85,7 @@ Para poder realizar despliegues en nuestro Tomcat previamente instalado, necesit
 
 Los roles utilizados por Tomcat vienen detallados en [su documentación](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html), que merece ser consultada:
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-2.png" alt="web.xml">
-</p>
+![web.xml](assets/imagenes/practica1/Tomcat/image-2.png)
 
 En dicha documentación se nos indica que, por temas de seguridad, es recomendable no otorgar los roles de **manager-script** o **manager-jmx** al mismo usuario que tenga el rol de **manager-gui**.
 
@@ -101,15 +95,11 @@ En dicha documentación se nos indica que, por temas de seguridad, es recomendab
 
 Así las cosas, modificamos el `archivo /etc/tomcat9/tomcat-users.xml` acorde a nuestras necesidades (los nombres de usuario y contraseña deberán ser los que elijáis para vosotros):
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-3.png" alt="/etc/tomcat9/tomcat-users.xml">
-</p>
+![/etc/tomcat9/tomcat-users.xml](assets/imagenes/practica1/Tomcat/image-3.png)
 
-2. Editar el archivo `/etc/maven/settings.xml` para indicarle a Maven, un identificador para el servidor sobre el que vamos a desplegar (no es más que un nombre, ponedle el nombre que consideréis), así como las credenciales. Todo esto se hará dentro del bloque servers del XML:
+1. Editar el archivo `/etc/maven/settings.xml` para indicarle a Maven, un identificador para el servidor sobre el que vamos a desplegar (no es más que un nombre, ponedle el nombre que consideréis), así como las credenciales. Todo esto se hará dentro del bloque servers del XML:
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-4.png" alt="/etc/maven/settings.xml">
-</p>
+![/etc/maven/settings.xml](assets/imagenes/practica1/Tomcat/image-4.png)
 
 3. Ahora debemos modificar el `POM` del proyecto para que haga referencia a que el despliegue se realice con el plugin de Maven para Tomcat.
 
@@ -119,9 +109,7 @@ Así las cosas, modificamos el `archivo /etc/tomcat9/tomcat-users.xml` acorde a 
 
     Otra opción sería utilizar el plugin [Cargo](https://codehaus-cargo.github.io/cargo/Home.html)
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-5.png" alt="POM">
-</p>
+![POM](assets/imagenes/practica1/Tomcat/image-5.png)
 
 Donde lo que añadimos es el bloque
 
@@ -161,15 +149,11 @@ Tras generar esta aplicación, los comandos finales que se utilizan en Maven par
    
 Así pues, tras el despliegue con Maven nos indicará que todo ha ido correctamente con un mensaje de `BUILD SUCCESS`, tal que así:
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-6.png" alt="BUILD SUCCESS">
-</p>
+![BUILD SUCCESS](assets/imagenes/practica1/Tomcat/image-6.png)
 
 Y, accediendo a través de la GUI, debemos ver que la aplicación está desplegado y que podemos acceder a ella perfectamente:
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-7.png" alt="Gestor de Aplicaciones Web de Tomcat">
-</p>
+![Gestor de Aplicaciones Web de Tomcat](assets/imagenes/practica1/Tomcat/image-7.png)
 
 ### TAREA
 
@@ -181,10 +165,7 @@ Nos clonamos el repositorio:
 
 `git clone https://github.com/cameronmcnz/rock-paper-scissors.git`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-59.png" alt="Clonación del repositorio de git">
-</p>
-
+![Clonación del repositorio de git](assets/imagenes/practica1/Tomcat/image-59.png)
 Nos situamos dentro de él:
 
 `cd rock-paper-scissors`
@@ -193,9 +174,7 @@ Y cambiamos de rama:
 
 `git checkout patch-1`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-60.png" alt="Cambio de rama">
-</p>
+![Cambio de rama](assets/imagenes/practica1/Tomcat/image-60.png)
 
 Tras esto debemos proceder exactamente igual que en el caso anterior, con la ventaja de que ya tenemos configurados los usuarios de Tomcat y los parámetros de Maven.
 
@@ -214,9 +193,7 @@ Así pues, sólo habría que añadir el bloque `<plugin>...</plugin>` adecuado p
 </plugin>
 ```
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-63.png" alt="Configuración pom.xml">
-</p>
+![Configuración pom.xml](assets/imagenes/practica1/Tomcat/image-63.png)
 
 !!! work "Task"
 
@@ -224,13 +201,9 @@ Así pues, sólo habría que añadir el bloque `<plugin>...</plugin>` adecuado p
 
 ### Resultados
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-62.png" alt="Mensaje de BUILD SUCCESS">
-</p>
+![Mensaje de BUILD SUCCESS](assets/imagenes/practica1/Tomcat/image-62.png)
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-61.png" alt="Mensaje en la web">
-</p>
+![Mensaje en la web](assets/imagenes/practica1/Tomcat/image-61.png)
 
 !!! Info
 
@@ -299,106 +272,72 @@ En principio esto representa un gran riesgo de seguridad, ¿sabrías razonar o a
 
 Abrimos el puerto 8082
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-17.png" alt="Abrimos el puerto 8082">
-</p>
+![Abrimos el puerto 8082](assets/imagenes/practica1/Tomcat/image-17.png)
 
 Actualizamos los repositorios
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-18.png" alt="Actualizamos los repositorios">
-</p>
+![Actualizamos los repositorios](assets/imagenes/practica1/Tomcat/image-18.png)
 
 Instalamos Java usando apt
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-25.png" alt="Instalamos Java usando apt">
-</p>
+![Instalamos Java usando apt](assets/imagenes/practica1/Tomcat/image-25.png)
 
 Instalamos Tomcat9
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-26.png" alt="Instalamos Tomcat9">
-</p>
+![Instalamos Tomcat9](assets/imagenes/practica1/Tomcat/image-26.png)
 
 Creamos el grupo y usuario tomcat9
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-27.png" alt="Creamos el grupo y usuario tomcat9">
-</p>
+![Creamos el grupo y usuario tomcat9](assets/imagenes/practica1/Tomcat/image-27.png)
 
 Iniciamos y comprobamos el estado de tomcat9
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-28.png" alt="Iniciamos y comprobamos el estado de tomcat9">
-</p>
+![Iniciamos y comprobamos el estado de tomcat9](assets/imagenes/practica1/Tomcat/image-28.png)
 
 Editamos los roles de los usuarios con el comando `sudo nano /etc/tomcat9/tomcat-users.xml`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-29.png" alt="Editamos los roles de los usuarios">
-</p>
+![Editamos los roles de los usuarios](assets/imagenes/practica1/Tomcat/image-29.png)
 
 Instalamos el manager y el host manager de tomcat9
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-30.png" alt="Manager y host-manager">
-</p>
+![Manager y host-manager](assets/imagenes/practica1/Tomcat/image-30.png)
 
 Comprobamos que podamos acceder a la web http://localhost:8080/manager/html introduciendo nuestras credenciales configuradas en el paso anterior.
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-31.png" alt="Accedemos a la web">
-</p>
+![Accedemos a la web](assets/imagenes/practica1/Tomcat/image-31.png)
 
 Accedemos al host-manager para comprobar que tenemos acceso
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-32.png" alt="Acceso al host-manager">
-</p>
+![Acceso al host-manager](assets/imagenes/practica1/Tomcat/image-32.png)
 
 Accedemos a la url [Apache Tomcat](https://tomcat.apache.org/download-90.cgi) y seleccionamos la opción de tar.gz del apartado Core
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-33.png" alt="Apache Tomcat">
-</p>
+![Apache Tomcat](assets/imagenes/practica1/Tomcat/image-33.png)
 
 Creamos el directorio /opt/tomcat
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-34.png" alt="/opt/tomcat">
-</p>
+![/opt/tomcat](assets/imagenes/practica1/Tomcat/image-34.png)
 
 Extraemos Tomcat:
 - Para ello debemos ir al directorio donde se encuentra el archivo `apache-tomcat-*.tar.gz`. Como en mi caso está en el directorio ~/ lo puedo hacer ahí mismo. 
 
-    <p align="center">
-        <img src="assets/imagenes/practica1/Tomcat/image-35.png" alt="Extracción Tomcat">
-    </p>
+    ![Extracción Tomcat](assets/imagenes/practica1/Tomcat/image-35.png)
 
 Movemos el contenido extraido a /opt/tomcat
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-36.png" alt="Movemos el contenido">
-</p>
+![Movemos el contenido](assets/imagenes/practica1/Tomcat/image-36.png)
 
 Añadimos el grupo y usuario tomcat
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-37.png" alt="Añadimos el grupo y usuario tomcat">
-</p>
+![Añadimos el grupo y usuario tomcat](assets/imagenes/practica1/Tomcat/image-37.png)
 
 Damos permisos recursivos al usuario y grupo creados
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-38.png" alt="Damos permisos recursivvos">
-</p>
+![Damos permisos recursivos](assets/imagenes/practica1/Tomcat/image-38.png)
 
 Obtenemos la ruta del paquete Java que instalamos en los primeros pasos con el comando `sudo update-java-alternatives -l`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-39.png" alt="Obtenemos la ruta del paquete Java">
-</p>
+![Obtenemos la ruta del paquete Java](assets/imagenes/practica1/Tomcat/image-39.png)
 
 **Y la copiamos**
 
@@ -406,7 +345,6 @@ Abrimos el archivo de configuración de Tomcat con el comando `sudo nano /etc/sy
 
 Pegamos el siguiente path y en la parte de `Enviroment=JAVA_HOME=` cambiamos la url que pone por la de la ruta del paquete Java que hemos copiado anteriormente
 
-```code
 Dentro de ese archivo copie el path:
 
 ```code
@@ -440,27 +378,19 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-40.png" alt="Archivo de configuración">
-</p>
+![Archivo de configuración](assets/imagenes/practica1/Tomcat/image-40.png)
 
 Otorgamos permisos de ejecución a todos los scripts con el comando `sudo bash -c "chmod +x /opt/tomcat/bin/*.sh"`
  
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-42.png" alt="Otorgamos permisos de ejecución">
-</p>
+![Otorgamos permisos de ejecución](assets/imagenes/practica1/Tomcat/image-42.png)
 
 Habilitamos el servicio tomcat con el comando `sudo system enable tomcat`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-41.png" alt="Habilitamos el servicio tomcat">
-</p>
+![Habilitamos el servicio tomcat](assets/imagenes/practica1/Tomcat/image-41.png)
 
 Agregamos un usuario de Tomcat al archivo de configuración
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-43.png" alt="Archivo de configuración">
-</p>
+![Archivo de configuración](assets/imagenes/practica1/Tomcat/image-43.png)
 
 Copiamos el siguiente código y remplazamos linuxhint con el nombre de usuario que quieras definir y cambia la contraseña donde dice YourPasswordHere
 
@@ -472,9 +402,8 @@ Copiamos el siguiente código y remplazamos linuxhint con el nombre de usuario q
 
 <user username="linuxhint" password="YourPasswordHere" roles="admin,admin-gui,manager,manager-gui"/>
 ```
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-44.png" alt="Archivo de configuración">
-</p>
+
+![Archivo de configuración](assets/imagenes/practica1/Tomcat/image-44.png)
 
 Edita el archivo de configuración con el comando `sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml` y comenta la línea 
 
@@ -488,83 +417,59 @@ allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ```
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-45.png" alt="Comentar la línea de código">
-</p>
+![Comentar la línea de código](assets/imagenes/practica1/Tomcat/image-45.png)
 
 Reinicia Tomcat
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-46.png" alt="Reinicio Tomcat">
-</p>
+![Reinicio Tomcat](assets/imagenes/practica1/Tomcat/image-46.png)
 
 Vamos a http://localhost:8080/manager
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-47.png" alt="localhost:8080/manager">
-</p>
+![localhost:8080/manager](assets/imagenes/practica1/Tomcat/image-47.png)
 
 Desplegamos un archivo .war
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-49.png" alt="Despliegue archivo .war">
-</p>
+![Despliegue archivo .war](assets/imagenes/practica1/Tomcat/image-49.png)
 
 Vamos a http://localhost:8080/EjemploPruebaCarga (O el nombre que tenga tu .war) y se debería de haber cargado el script que hemos exportado
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-48.png" alt="Comprobación de correcto despliegue">
-</p>
+![Comprobación de correcto despliegue](assets/imagenes/practica1/Tomcat/image-48.png)
 
 ### Instalación de Maven
 
 Actualizamos los repositorios e instalamos Maven
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-50.png" alt="Actualización de repositorios e instalación Maven">
-</p>
+![Actualización de repositorios e instalación Maven](assets/imagenes/practica1/Tomcat/image-50.png)
 
 Para comprobar que todo ha ido correctamente vemos la versión instalada con el comando `mvn --v`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-51.png" alt="Versión Maven">
-</p>
+![Versión Maven](assets/imagenes/practica1/Tomcat/image-51.png)
 
 #### Configuración
 
 Añadimos el rol de `manager-script` a la configuración de los usuarios de tomcat en el archivo `/etc/tomcat9/tomcat-users.xml`
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-52.png" alt="Rol de manager-script">
-</p>
+![Rol de manager-script](assets/imagenes/practica1/Tomcat/image-52.png)
 
 Editamos el archivo `/etc/maven/settings.xml`
 
 Añadimos nuestro nombre, el nombre de la práctica y una contraseña a nuestra elección
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-53.png" alt="Edición settings.xml">
-</p>
+![Edición settings.xml](assets/imagenes/practica1/Tomcat/image-53.png)
 
 Modificamos el `POM`
 
 - Primero creamos un nuevo proyecto Maven
 
-    <p align="center">
-        <img src="assets/imagenes/practica1/Tomcat/image-54.png" alt="Creación del proyecto Maven">
-    </p>
+    ![Creación del proyecto Maven](assets/imagenes/practica1/Tomcat/image-54.png)
 
 - Si todo ha ido bien nos mostrará un mensaje de BUILD SUCCESS
 
-    <p align="center">
-        <img src="assets/imagenes/practica1/Tomcat/image-55.png" alt="BUILD SUCCESS">
-    </p>
+    ![BUILD SUCCESS](assets/imagenes/practica1/Tomcat/image-55.png)
 
 - Vamos a la carpeta que se nos ha creado y abrimos el archivo `pom.xml`
 
-    <p align="center">
-        <img src="assets/imagenes/practica1/Tomcat/image-57.png" alt="Carpeta donde se encuentra el pom.xml">
-    </p>
+    ![Carpeta donde se encuentra el pom.xml](assets/imagenes/practica1/Tomcat/image-57.png)
 
 - Añadimos el bloque 
 
@@ -590,6 +495,4 @@ Modificamos el `POM`
 
 Si entramos en http://localhost:8080/manager tendría que mostrarse el apartado de que se ha creado nuestra web EjemploPruebaCarga.
 
-<p align="center">
-    <img src="assets/imagenes/practica1/Tomcat/image-58.png" alt="Resultado">
-</p>
+![Resultado](assets/imagenes/practica1/Tomcat/image-58.png)
