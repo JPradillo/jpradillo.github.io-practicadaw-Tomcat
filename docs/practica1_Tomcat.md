@@ -28,6 +28,7 @@ En conclusión, no es raro encontrarse en el mundo real un proyecto a desplegar 
 
 Esta práctica es muy sencilla y va a consistir en realizar la instalación del servidor de aplicaciones Tomcat 9, en una máquina virtual corriendo Debian 11 Bullseye.
 
+![alt](assets/imagenes/practica1/Tomcat/image-1.png)
 <p align="center">
     <img src="assets/imagenes/practica1/Tomcat/image.png" alt="Apache Tomcat">
 </p>
