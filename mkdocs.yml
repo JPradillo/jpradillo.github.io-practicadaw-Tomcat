@@ -12,4 +12,5 @@ nav:
   - 'Tema 3': 
     - 'Teoría': 'index.md'
     - 'Prácticas':
-      - 'Práctica 3.1': 'practica1.md'
+      - 'Práctica 3.1 - Tomcat': 'practica1_Tomcat.md'
+      - 'Práctica 3.1 - API Restful': 'practica1_Restful.md'
