@@ -4,46 +4,26 @@ on:
     branches:
       - master
       - main
-
 permissions:
   contents: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Paso 1: Checkout del repositorio
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Paso 2: Configurar credenciales de Git
+      - uses: actions/checkout@v4
       - name: Configure Git Credentials
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      # Paso 3: Configuración de Python
-      - name: Set up Python
-        uses: actions/setup-python@v5
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-
-      # Paso 4: Configuración de caché para pip
-      - name: Cache dependencies
-        uses: actions/cache@v4
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v4
         with:
-          key: mkdocs-material-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
-          path: ~/.cache/pip
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
           restore-keys: |
-            mkdocs-material-${{ runner.os }}-
-
-      # Paso 5: Instalar dependencias
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      # Paso 6: Construir y desplegar MkDocs
-      - name: Build and deploy
-        run: |
-          mkdocs gh-deploy --force
+            mkdocs-material-
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force

@@ -44,7 +44,7 @@ Hay numerosas razones a favor de usar Netlify, aquí están algunas de ellas:
 
 Tras loguearnos por SSH en nuestro Debian, nos crearemos un directorio para albergar la aplicación con el nombre que queramos. En ese directorio, crearemos los 3 archivos (dos .html y un .js)que conformarán nuestra sencilla aplicación de ejemplo:
 
-=== "head.html"
+head.html
 
 ```html
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ Tras loguearnos por SSH en nuestro Debian, nos crearemos un directorio para albe
 </body>
 ```
 
-=== "tail.html"
+tail.html
 
 ```html
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ Tras loguearnos por SSH en nuestro Debian, nos crearemos un directorio para albe
 </body>
 ```
 
-=== "aplicacion.js"
+aplicacion.js
 
 ```js
 var http = require('http');
@@ -122,206 +122,229 @@ http.createServer(function (req, res) {
 
 Ahora, tal y como hacemos siempre a la hora de crear nuestra aplicación Node.js, con el fin de crear el archivo package.json, utilizaremos en el terminal el comando:
 
+`npm init`
 
-npm init
 Podemos probar que nuestra aplicación funciona perfectamente en local:
 
 
-node aplicacion.js
-Y tras ello, debemos poder acceder, desde nuestra máquina anfitriona a http://IP-maq-virtual:8080
+`node aplicacion.js`
+
+Y tras ello, debemos poder acceder, desde nuestra máquina anfitriona a `http://IP-maq-virtual:8080`
 
 Ya con la aplicación creada y comprobada, podremos desplegarla en múltiples plataformas en la nube, como AWS, GCP, Azure, Digital Ocean, Heroku...
 
-¡Ojo!
+!!! warning "¡Ojo!"
 
-Para que nos funcione en la plataforma PaaS, en el archivo package.json que se nos ha creado al hacer el npm init debemos hacerle una modificación.
+        Para que nos funcione en la plataforma PaaS, en el archivo package.json que se nos ha creado al hacer el npm init debemos hacerle una modificación.
 
-En el bloque scripts, debemos borrar lo que haya dentro y dejar únicamente dentro de él:
+        En el bloque scripts, debemos borrar lo que haya dentro y dejar únicamente dentro de él:
 
+        `"start": "node aplicacion.js"`
+        
+        De forma que el sitio donde la despleguemos sepa que comando utilizar para iniciar la aplicación tras desplegarla.
 
-"start": "node aplicacion.js"
-De forma que el sitio donde la despleguemos sepa que comando utilizar para iniciar la aplicación tras desplegarla.
+## Aplicación para Netlify
 
-Aplicación para Netlify
 Puesto que el interés en este módulo radica en el proceso de despliegue, suponiendo que la parte de desarrollo ya es abordada en otros módulos, vamos a utilizar una aplicación de ejemplo que nos ahorre tiempo para centrarnos en el despliegue.
 
-Nos clonaremos este repositorio:
+Nos clonaremos [este](https://github.com/StackAbuse/color-shades-generator) repositorio:
 
-git clone https://github.com/StackAbuse/color-shades-generator
+`git clone https://github.com/StackAbuse/color-shades-generator`
 
-Proceso de despliegue en Netlify
+## Proceso de despliegue en Netlify
+
 Por mera curiosidad y ambición de aprendizaje, vamos a ver dos métodos de despliegue en Netlify:
 
-Despliegue manual desde el CLI de Netlify, es decir, desde el terminal, a partir de un directorio local de nuestra máquina.
-Despliegue desde un código publicado en uno de nuestros repositorios de Github
+* Despliegue manual desde el CLI de Netlify, es decir, desde el terminal, a partir de un directorio local de nuestra máquina.
+* Despliegue desde un código publicado en uno de nuestros repositorios de Github
+  
 El primero nos permitirá conocer el CLI de Netlify y el segundo nos acercara más a una experiencia real de despliegue.
 
-Task
+!!! infor "Task"
 
-Vuestra primera tarea será registraros en Netlify con vuestro email (no con vuestra cuenta de Github) y decirle que no cuando os pida enlazar con vuestra cuenta de Github (lo haremos más adelante).
+        Vuestra primera tarea será [registraros en Netlify](https://www.netlify.com/) con vuestro email (no con vuestra cuenta de Github) y decirle que no cuando os pida enlazar con vuestra cuenta de Github (lo haremos más adelante).
 
-Despliegue mediante CLI
+### Despliegue mediante CLI
+
 Una vez registrados, debemos instalar el CLI de Netlify para ejecutar sus comandos desde el terminal:
 
 
-sudo npm install netlify-cli -g
+`sudo npm install netlify-cli -g`
+
 Está claro que para realizar acciones de deploy, Netlify nos solicitará una autenticación, esto se hace mediante el comando:
 
 
-netlify login
+`netlify login`
+
 El cual nos muestra una pantalla del navegador para que concedamos la autorización pertinente. Sin embargo, recordemos el problema de que estamos conectados por SSH a nuestro servidor y no tenemos la posibilidad del uso de un entorno gráfico.
 
-En este caso, siguiendo las instrucciones de la documentación:
+En este caso, siguiendo las instrucciones de [la documentación](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui):
 
 Generamos el token de acceso
 
+![alt text](image-2.png)
 
+![alt text](image-3.png)
 
+* Lo establecemos como variable de ambiente:
 
-
-Lo establecemos como variable de ambiente:
-
-
+![alt text](image-4.png)
 
 Y nos logueamos
 
+`netlify login`
 
-netlify login
 Bueno, tenemos el código de nuestra aplicación, tenemos nuestra cuenta en Netlify y tenemos el CLI necesario para ejecutar comandos desde el terminal en esa cuenta... ¿Podemos proceder al despliegue sin mayores complicaciones?
 
 La respuesta es NO, como buenos desarrolladores y en base a experiencias anteriores, ya sabéis que hay que hacer un build de la aplicación para, posteriormente, desplegarla. Vamos a ello.
 
-En primer lugar, como sabemos, debemos instalar todas las dependencias que vienen indicadas en el archivo package.json:
+En primer lugar, como sabemos, debemos instalar todas las dependencias que vienen indicadas en el archivo `package.json`:
 
+`npm install`
 
-npm install
 Y cuando ya las tengamos instaladas podemos proceder a realizar el build:
 
-npm run build
-Esto nos creará una nueva carpeta llamada build que contendrá la aplicación que debemos desplegar. Y ya podemos hacer un pre-deploy de la aplicación de la que hemos hecho build antes:
+`npm run build`
 
+Esto nos creará una nueva carpeta llamada `build` que contendrá la aplicación que debemos desplegar. Y ya podemos hacer un pre-deploy de la aplicación de la que hemos hecho build antes:
 
-netlify deploy
+`netlify deploy`
+
 Nos hará algunas preguntas para el desplieuge:
-Indicamos que queremos crear y configurar un nuevo site
-El Team lo dejamos por defecto
-Le indicamos el nombre que queremos emplear para la web (nombre-practica3-4) y el directorio a utilizar para el deploy (directorio ./build).
+- Indicamos que queremos crear y configurar un nuevo site
+- El Team lo dejamos por defecto
+- Le indicamos el nombre que queremos emplear para la web (`nombre-practica3-4`) y el directorio a utilizar para el deploy (directorio `./build`).
+  
 Y si nos indica que todo ha ido bien e incluso podemos ver el "borrador" (Website Draft URL) de la web que nos aporta, podemos pasarla a producción finalmente tal y como nos indica la misma salida del comando:
 
-
+```
 If everything looks good on your draft URL, deploy it to your main site URL with the --prod flag.
+
 netlify deploy --prod
-Warning
+```
 
-No olvides desplegar finalmente en producción y comprobar que puedes acceder a la URL.
+!!! warning "Warning"
 
-Despliegue mediante conexión con Github
+        No olvides desplegar finalmente en producción y comprobar que puedes acceder a la URL.
+
+### Despliegue mediante conexión con Github
+
 En primer lugar, vamos a eliminar el site que hemos desplegado antes en Netlify para evitarnos cualquier problema y/o conflicto:
 
-
+![alt text](image-5.png)
 
 En segundo lugar, vamos a borrar el directorio donde se halla el repositorio clonado en el paso anterior para así poder empezar de 0:
 
+`rm -rf directorio_repositorio`
 
-rm -rf directorio_repositorio
 Como queremos simular que hemos picado el código a man o en local y lo vamos a subir a Github por primera vez, nos descargaremos los fuentes en formato .zip sin que tenga ninguna referencia a Github:
 
+`wget https://github.com/StackAbuse/color-shades-generator/archive/refs/heads/main.zip`
 
-wget https://github.com/StackAbuse/color-shades-generator/archive/refs/heads/main.zip
 Creamos una carpeta nueva y descomprimimos dentro el zip:
 
+```
 mkdir practica3.4
 
 unzip main.zip -d practica3.4/
+```
+
 Entramos en la carpeta donde está el código:
 
+`cd practica3.4/color-shades-generator-main/`
 
-cd practica3.4/color-shades-generator-main/
-Ahora debemos crear un repositorio completamente vacío en Github que se llame practicaTresCuatro:
+Ahora debemos crear un repositorio <u>**completamente vacío**</u> en Github que se llame `practicaTresCuatro`:
 
+![alt text](image-6.png)
 
 Y tras ello, volviendo al terminal a la carpeta donde estábamos, la iniciamos como repositorio, añadimos todo el contenido de la misma para el commit, hacemos el commit con el mensaje correspondiente y creamos la rama main:
 
-
+```console
 $ git init
 $ git add .
 $ git commit -m "Subiendo el código..."
 $ git branch -M main
-Y ahora sólo queda referenciar nuestra carpeta al repositorio recién creado en Github y hacer un push para subir todo el contenido del commit a él:
+```
 
+Y ahora sólo queda referenciar nuestra carpeta al repositorio recién creado en Github y hacer un `push` para subir todo el contenido del commit a él:
 
+```console
 $ git remote add origin https://github.com/username/practicaTresCuatro.git
 $ git push -u origin main
-Ahora que ya tenemos subido el código a GitHub, de alguna manera debemos enganchar o enlazar nuestra cuenta de Github con la de Netlify para que éste último pueda traerse el código de allí, hacer el build y desplegarlo. Así pues, entramos en nuestro dashboard de Netlify y le damos a importar proyecto existente de git:
+```
 
+Ahora que ya tenemos subido el código a GitHub, de alguna manera debemos enganchar o enlazar nuestra cuenta de Github con la de Netlify para que éste último pueda traerse el código de allí, hacer el build y desplegarlo. Así pues, entramos en nuestro dashboard de Netlify y le damos a importar proyecto existente de `git`:
 
+![alt text](image-7.png)
 
 Le indicamos que concretamente de Github:
 
-
+![alt text](image-8.png)
 
 Y nos saltará una ventana pidiendo que autoricemos a Netlify a acceder a nuestros repositorios de Github:
 
-
+![alt text](image-9.png)
 
 Y luego le indicaremos que no acceda a todos nuestros repositorios sino sólo al repositorio que necesitamos, que es donde tenemos el código de nuestra aplicación:
 
-
+![alt text](image-10.png)
 
 Y ya quedará todo listo:
 
-
+![alt text](image-11.png)
 
 Y desplegamos la aplicación:
 
+![alt text](image-12.png)
 
+Netlify se encargará de hacer el `build` de forma automática tal y como hemos visto en la imagen de arriba, con el comando `npm run build`, publicando el contenido del directorio `build`.
 
-Netlify se encargará de hacer el build de forma automática tal y como hemos visto en la imagen de arriba, con el comando npm run build, publicando el contenido del directorio build.
+!!! warning "Atención"
 
-Atención
+        Tras el deploy, en "Site settings" podeís y debéis cambiar el nombre de la aplicación por nombre-practica3-4, donde *nombre* es vuestro nombre.
 
-Tras el deploy, en "Site settings" podeís y debéis cambiar el nombre de la aplicación por nombre-practica3-4, donde nombre es vuestro nombre.
+Lo que hemos conseguido de esta forma es que, cualquier cambio que hagamos en el proyecto y del que hagamos `commit` y `push` en Github, automáticamente genere un nuevo despliegue en Netlify. Es el principio de lo que más adelante veremos como *despliegue continuo*.
 
-Lo que hemos conseguido de esta forma es que, cualquier cambio que hagamos en el proyecto y del que hagamos commit y push en Github, automáticamente genere un nuevo despliegue en Netlify. Es el principio de lo que más adelante veremos como despliegue continuo.
+<u>**Comprobemos que realmente es así**</u>:
 
-Comprobemos que realmente es así:
+* Dentro de la carpeta `public` encontramos el archivo `robots.txt`, cuyo cometido es indicar a los rastreadores de los buscadores a qué URLs del sitio pueden acceder. A este archivo se puede acceder a través de la URL del site:
 
-Dentro de la carpeta public encontramos el archivo robots.txt, cuyo cometido es indicar a los rastreadores de los buscadores a qué URLs del sitio pueden acceder. A este archivo se puede acceder a través de la URL del site:
+![alt text](image-13.png)
 
+* Dentro de la carpeta `public`, utilizando el editor de texto que prefiráis en vuestro terminal, modificad el archivo `robots.txt` para que excluya un directorio que se llame `nombre_apellido`, utilizando obviamente vuestro nombre y apellido.
 
-
-Dentro de la carpeta public, utilizando el editor de texto que prefiráis en vuestro terminal, modificad el archivo robots.txt para que excluya un directorio que se llame nombre_apellido, utilizando obviamente vuestro nombre y apellido.
-
-
+```
 User-agent: *
 Disallow: /nombre_y_apellido/
-Haz un nuevo commit y push (del caso anterior, recuerda el commando git previo para añadir los archivos a hacer commit)
+```
+* Haz un nuevo `commit` y `push` (del caso anterior, recuerda el commando `git` previo para añadir los archivos a hacer commit)
 
-Comprueba en el dashboard de Netlify que se ha producido un nuevo deploy de la aplicación hace escasos segundos
+* Comprueba en el dashboard de Netlify que se ha producido un nuevo deploy de la aplicación hace escasos segundos
 
+![alt text](image-14.png)
 
+![alt text](image-15.png)
 
+Accede a `https://url_de_la_aplicacion/robots.txt` y comprueba que, efectivamente, se ve reflejado el cambio
 
+![alt text](image-16.png)
 
-Accede a https://url_de_la_aplicacion/robots.txt y comprueba que, efectivamente, se ve reflejado el cambio
+!!! infor "Task"
 
+        Documenta la realización de toda esta práctica adecuadamente, con las explicaciones y justificaciones necesarias y las capturas de pantalla pertinentes.
 
+!!! infor "Task"
 
-Task
+        Repite y replica este proceso de despliegue en [Vercel](https://vercel.com/), otra plataforma PaaS.
 
-Documenta la realización de toda esta práctica adecuadamente, con las explicaciones y justificaciones necesarias y las capturas de pantalla pertinentes.
+## Referencias
 
-Task
+[¿Qué es Github?](https://www.hostinger.es/tutoriales/que-es-github)
 
-Repite y replica este proceso de despliegue en Vercel, otra plataforma PaaS.
+[Deploying Node.js applications](https://www.geeksforgeeks.org/deploying-node-js-applications/)
 
-Referencias
-¿Qué es Github?
+[How to deploy your website to Netlify for free](https://medium.com/geekculture/how-to-deploy-your-website-to-netlify-for-free-830e91705b7f)
 
-Deploying Node.js applications
+[4 Ways To Deploy Your Static Site with Netlify](https://prettystatic.com/4-ways-to-deploy-your-static-site-with-netlify/)
 
-How to deploy your website to Netlify for free
-
-4 Ways To Deploy Your Static Site with Netlify
-
-Guide to Deploying a React App to Netlify
+[Guide to Deploying a React App to Netlify](https://stackabuse.com/guide-to-deploying-a-react-app-to-netlify/)
