@@ -44,17 +44,8 @@ Hay numerosas razones a favor de usar Netlify, aquí están algunas de ellas:
 
 Tras loguearnos por SSH en nuestro Debian, nos crearemos un directorio para albergar la aplicación con el nombre que queramos. En ese directorio, crearemos los 3 archivos (dos .html y un .js)que conformarán nuestra sencilla aplicación de ejemplo:
 
-<ul>
-  <li><a href="#head-html">head.html</a></li>
-  <li><a href="#tail-html">tail.html</a></li>
-  <li><a href="#aplicacion-js">aplicacion.js</a></li>
-</ul>
-
-head.html
-tail.html
-aplicacion.js
-
 === "head.html"
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -68,6 +59,7 @@ aplicacion.js
 ```
 
 === "tail.html"
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -81,6 +73,7 @@ aplicacion.js
 ```
 
 === "aplicacion.js"
+
 ```js
 var http = require('http');
 var fs = require('fs'); // para obtener los datos del archivo html
