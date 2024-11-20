@@ -13,4 +13,4 @@ nav:
     - 'Teoría': 'index.md'
     - 'Prácticas':
       - 'Práctica 3.1 - Tomcat': 'practica1_Tomcat.md'
-      - 'Práctica 3.1 - API Restful': 'practica1_Restful.md'
+      - 'Práctica 3.2 - Node Express': 'practica2_NodeExpress.md'
