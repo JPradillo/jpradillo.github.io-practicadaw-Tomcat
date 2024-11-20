@@ -7,7 +7,6 @@ theme:
   
 markdown_extensions:
   - admonition
-  - pymdownx.tabs
   - codehilite
 
 nav:
