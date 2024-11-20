@@ -28,7 +28,7 @@ En lugar de acceder a `http://localhost:3000`, debéis acceder desde vuestra má
 
 Recordad parar el servidor (CTRL+C) al acabar la práctica.
 
-!!! info "Task"
+!!! infor "Task"
 
     Documenta, incluyendo capturas de pantallas, el proceso que has seguido para realizar el despliegue de esta nueva aplicación, así como el resultado final.
 
@@ -59,7 +59,7 @@ Cuando sigáis el proceso necesario e intentéis iniciar la aplicación con Expr
 
 `sh: 1: nodemon: not found`
 
-!!! info "Tarea"
+!!! infor "Tarea"
 
     Buscad cómo solucionar este problema y, tras ello, iniciad la aplicación sin problemas.
 
