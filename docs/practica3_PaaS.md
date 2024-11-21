@@ -425,9 +425,36 @@ Accede a `https://url_de_la_aplicacion/robots.txt` y comprueba que, efectivament
 
         Documenta la realización de toda esta práctica adecuadamente, con las explicaciones y justificaciones necesarias y las capturas de pantalla pertinentes.
 
+## VERCEL
+
 !!! infor "Task"
 
         Repite y replica este proceso de despliegue en [Vercel](https://vercel.com/), otra plataforma PaaS.
+
+Seleccionamos la opción de seguir con GitHub
+
+![alt text](image.png)
+
+Autorizamos que Vercel tenga persmisos para conectarse a Git
+
+![alt text](image-1.png)
+
+Instalamos Vercel en nuestro repositorio PracticaTresCuatro de GitHub
+
+![alt text](image-2.png)
+
+Desplegamos el proyecto
+
+![alt text](image-3.png)
+
+Tras esto ya tenemos nuestro proyecto desplegado
+
+![alt text](image-4.png)
+
+#### RESULTADO 
+Si vamos a https://practica-tres-cuatro-seven.vercel.app nos mostrará la app desplegada.
+
+![alt text](image-5.png)
 
 ## Referencias
 
