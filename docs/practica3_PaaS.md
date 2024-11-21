@@ -433,28 +433,28 @@ Accede a `https://url_de_la_aplicacion/robots.txt` y comprueba que, efectivament
 
 Seleccionamos la opción de seguir con GitHub
 
-![alt text](image.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel.png)
 
 Autorizamos que Vercel tenga persmisos para conectarse a Git
 
-![alt text](image-1.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel-1.png)
 
 Instalamos Vercel en nuestro repositorio PracticaTresCuatro de GitHub
 
-![alt text](image-2.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel-2.png)
 
 Desplegamos el proyecto
 
-![alt text](image-3.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel-3.png)
 
 Tras esto ya tenemos nuestro proyecto desplegado
 
-![alt text](image-4.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel-4.png)
 
 #### RESULTADO 
 Si vamos a https://practica-tres-cuatro-seven.vercel.app nos mostrará la app desplegada.
 
-![alt text](image-5.png)
+![alt text](assets/imagenes/practicas/PaaS/Practica/vercel-5.png)
 
 ## Referencias
 
