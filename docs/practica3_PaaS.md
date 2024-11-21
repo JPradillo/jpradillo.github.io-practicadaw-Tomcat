@@ -16,7 +16,7 @@ A pesar de que trataremos un poco más en profundidad Github en el siguiente tem
 
 GitHub es un servicio basado en la nube que aloja un sistema de control de versiones (VCS) llamado Git. Éste permite a los desarrolladores colaborar y realizar cambios en proyectos compartidos, a la vez que mantienen un seguimiento detallado de su progreso.
 
-![alt text](image.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image.png)
 
 El control de versiones es un sistema que ayuda a rastrear y gestionar los cambios realizados en un archivo o conjunto de archivos. Utilizado principalmente por ingenieros de software para hacer un seguimiento de las modificaciones realizadas en el código fuente, el sistema de control de versiones les permite analizar todos los cambios y revertirlos sin repercusiones si se comete un error.
 
@@ -26,7 +26,7 @@ Netlify es un proveedor de alojamiento en la nube que proporciona servicios de b
 
 Funciona conectándose a un repositorio de GitHub, de donde extrae el código fuente. A continuación, ejecutará un proceso de construcción para pre-renderizar las páginas de nuestro sitio web/aplicación en archivos estáticos.
 
-![alt text](image-1.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-1.png)
 
 Hay numerosas razones a favor de usar Netlify, aquí están algunas de ellas:
 
@@ -182,13 +182,13 @@ En este caso, siguiendo las instrucciones de [la documentación](https://docs.ne
 
 Generamos el token de acceso
 
-![alt text](image-2.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-2.png)
 
-![alt text](image-3.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-3.png)
 
 * Lo establecemos como variable de ambiente:
 
-![alt text](image-4.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-4.png)
 
 Y nos logueamos
 
@@ -231,7 +231,7 @@ netlify deploy --prod
 
 En primer lugar, vamos a eliminar el site que hemos desplegado antes en Netlify para evitarnos cualquier problema y/o conflicto:
 
-![alt text](image-5.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-5.png)
 
 En segundo lugar, vamos a borrar el directorio donde se halla el repositorio clonado en el paso anterior para así poder empezar de 0:
 
@@ -255,7 +255,7 @@ Entramos en la carpeta donde está el código:
 
 Ahora debemos crear un repositorio <u>**completamente vacío**</u> en Github que se llame `practicaTresCuatro`:
 
-![alt text](image-6.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-6.png)
 
 Y tras ello, volviendo al terminal a la carpeta donde estábamos, la iniciamos como repositorio, añadimos todo el contenido de la misma para el commit, hacemos el commit con el mensaje correspondiente y creamos la rama main:
 
@@ -275,27 +275,27 @@ $ git push -u origin main
 
 Ahora que ya tenemos subido el código a GitHub, de alguna manera debemos enganchar o enlazar nuestra cuenta de Github con la de Netlify para que éste último pueda traerse el código de allí, hacer el build y desplegarlo. Así pues, entramos en nuestro dashboard de Netlify y le damos a importar proyecto existente de `git`:
 
-![alt text](image-7.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-7.png)
 
 Le indicamos que concretamente de Github:
 
-![alt text](image-8.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-8.png)
 
 Y nos saltará una ventana pidiendo que autoricemos a Netlify a acceder a nuestros repositorios de Github:
 
-![alt text](image-9.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-9.png)
 
 Y luego le indicaremos que no acceda a todos nuestros repositorios sino sólo al repositorio que necesitamos, que es donde tenemos el código de nuestra aplicación:
 
-![alt text](image-10.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-10.png)
 
 Y ya quedará todo listo:
 
-![alt text](image-11.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-11.png)
 
 Y desplegamos la aplicación:
 
-![alt text](image-12.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-12.png)
 
 Netlify se encargará de hacer el `build` de forma automática tal y como hemos visto en la imagen de arriba, con el comando `npm run build`, publicando el contenido del directorio `build`.
 
@@ -309,7 +309,7 @@ Lo que hemos conseguido de esta forma es que, cualquier cambio que hagamos en el
 
 * Dentro de la carpeta `public` encontramos el archivo `robots.txt`, cuyo cometido es indicar a los rastreadores de los buscadores a qué URLs del sitio pueden acceder. A este archivo se puede acceder a través de la URL del site:
 
-![alt text](image-13.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-13.png)
 
 * Dentro de la carpeta `public`, utilizando el editor de texto que prefiráis en vuestro terminal, modificad el archivo `robots.txt` para que excluya un directorio que se llame `nombre_apellido`, utilizando obviamente vuestro nombre y apellido.
 
@@ -321,13 +321,13 @@ Disallow: /nombre_y_apellido/
 
 * Comprueba en el dashboard de Netlify que se ha producido un nuevo deploy de la aplicación hace escasos segundos
 
-![alt text](image-14.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-14.png)
 
-![alt text](image-15.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-15.png)
 
 Accede a `https://url_de_la_aplicacion/robots.txt` y comprueba que, efectivamente, se ve reflejado el cambio
 
-![alt text](image-16.png)
+![alt text](assets/imagenes/practicas/PaaS/Teoria/image-16.png)
 
 !!! infor "Task"
 
