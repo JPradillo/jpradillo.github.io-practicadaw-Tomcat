@@ -74,21 +74,16 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 ## Procedimiento completo para el despliegue
 
 1. Instalamos el gestor de paquetes de Python pip:
-
 ```console
 sudo apt update
 
 sudo apt install python3-pip
 ```
-
 2. Instalamos el paquete `pipenv` para gestionar los entornos virtuales:
-
 ```console
 sudo apt install pipenv
 ```
-
 3. Y comprobamos que está instalado correctamente mostrando su versión:
-
 ```console
 pipenv --version
 ```
@@ -254,7 +249,6 @@ server {
     - access_log /var/log/nginx/mi_aplicacion.access.log; -> Dónde estarán ubicados los logs de acceso y de errores.
 
     - proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; -> Bloque donde se le indica a Nginx que haga de proxy inverso hacia el socket creado en nuestra propia máquina por gunicorn para acceder a nuestra aplicación Flask.
-
 7. Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
 
 ```console
