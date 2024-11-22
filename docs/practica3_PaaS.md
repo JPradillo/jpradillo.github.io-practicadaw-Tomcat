@@ -1,4 +1,4 @@
-# Práctica 3.4: Despliegue de una aplicación una aplicación React en Netlify (PaaS)
+# Práctica 3.3: Despliegue de una aplicación una aplicación React en Netlify (PaaS)
 
 ## Introducción
 
