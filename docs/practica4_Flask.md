@@ -98,18 +98,20 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 5. Al crearlo con `sudo`, los permisos pertenecen a root:
    ![Permisos](assets/imagenes/practicas/Flask/Practica/image-5.png)
 6. Hay que cambiarlo para que el dueño sea nuestro usuario (`usuario` en mi caso) y pertenezca al grupo `www-data`, el usuario usado por defecto por el servidor web para correr:
-    ```console
+```
     sudo chown -R $USER:www-data /var/www/mi_aplicacion
-    ```
+```
     ![Configuración pertenencia](assets/imagenes/practicas/Flask/Practica/image-6.png)
 7. Establecemos los permisos adecuados a este directorio, para que pueda ser leído por todo el mundo:
-    ```console
+```
     chmod -R 775 /var/www/mi_aplicacion   
-    ```
-    !!! warning "Warning"
+```
+    
+!!! warning "Warning"
 
-        Es **indispensable** asignar estos permisos, de otra forma obtendríamos un error al acceder a la aplicación cuando pongamos en marcha **Nginx**
-    ![Permisos](assets/imagenes/practicas/Flask/Practica/image-7.png)
+    Es **indispensable** asignar estos permisos, de otra forma obtendríamos un error al acceder a la aplicación cuando pongamos en marcha **Nginx**
+![Permisos](assets/imagenes/practicas/Flask/Practica/image-7.png)
+
 8. Dentro del directorio de nuestra aplicación, creamos un archivo oculto `.env` que contendrá las variables de entorno necesarias:
     ```console
     touch .env
@@ -311,7 +313,8 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
     Creamos un archivo para que `systemd` corra Gunicorn como un servicio del sistema
     ![alt text](assets/imagenes/practicas/Flask/Practica/image-42.png)
     Debemos poner algo como:
-    ```console
+
+```console
     [Unit]
     Description=Practica-3-5.service - Una aplicacion flask de ejemplo con Gunicorn
     After=network.target
@@ -325,7 +328,8 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
     [Install]
     WantedBy=multi-user.target
-    ```
+```
+
     Habilitamos y iniciamos el servicio que acabamos de crear
     ![alt text](assets/imagenes/practicas/Flask/Practica/image-43.png)
     Creamos un archivo de configuración para Nginx
