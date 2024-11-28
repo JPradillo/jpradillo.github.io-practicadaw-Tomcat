@@ -263,8 +263,8 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
     Pasemos ahora a configurar <u>**Nginx**</u>, que es algo que ya deberíamos tener dominado de capítulos anteriores.
 
 11. Creamos un archivo con el nombre de nuestra aplicación y dentro estableceremos la configuración para ese sitio web. El archivo, como recordáis, debe estar en `/etc/nginx/sites-available/nombre_aplicacion` y tras ello lo editamos para que quede:
- 
-    ```nginx
+
+    ```
     server {
         listen 80;
         server_name mi_aplicacion www.mi_aplicacion; 
