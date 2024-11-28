@@ -264,8 +264,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
 11. Creamos un archivo con el nombre de nuestra aplicación y dentro estableceremos la configuración para ese sitio web. El archivo, como recordáis, debe estar en `/etc/nginx/sites-available/nombre_aplicacion` y tras ello lo editamos para que quede:
 
-    ```nginx
-
+    ```
     server {
         listen 80;
         server_name mi_aplicacion www.mi_aplicacion; 
@@ -278,17 +277,19 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
                 proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; 
         }
     }   
-
     ```
     
-    ![sites-available](assets/imagenes/practicas/Flask/Practica/image-25.png)
+![sites-available](assets/imagenes/practicas/Flask/Practica/image-25.png)
 
-    !!! info "Información"
-       - server_name mi_aplicacion www.mi_aplicacion; -> Nombre del dominio, ya veremos más adelante como el DNS resolverá este nombre para acceder a nuestra aplicación.  
-       - access_log /var/log/nginx/mi_aplicacion.access.log; -> Dónde estarán ubicados los logs de acceso y de errores.
-       - proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; -> Bloque donde se le indica a Nginx que haga de proxy inverso hacia el socket creado en nuestra propia máquina por gunicorn para acceder a nuestra aplicación Flask.
+!!! info "Información"
+    
+    server_name mi_aplicacion www.mi_aplicacion; -> Nombre del dominio, ya veremos más adelante como el DNS resolverá este nombre para acceder a nuestra aplicación.
+
+    access_log /var/log/nginx/mi_aplicacion.access.log; -> Dónde estarán ubicados los logs de acceso y de errores.
+
+    proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; -> Bloque donde se le indica a Nginx que haga de proxy inverso hacia el socket creado en nuestra propia máquina por gunicorn para acceder a nuestra aplicación Flask.
   
-16. Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
+16.  Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
    
     ```
     sudo ln -s /etc/nginx/sites-available/nombre_aplicacion /etc/nginx/sites-enabled/
@@ -302,7 +303,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
     ![Link simbólico](assets/imagenes/practicas/Flask/Practica/image-26.png)
 
-6. Nos aseguramos de que la configuración de Nginx no contiene errores, reiniciamos Nginx y comprobamos que se estado es activo:
+2. Nos aseguramos de que la configuración de Nginx no contiene errores, reiniciamos Nginx y comprobamos que se estado es activo:
 
     ```
     nginx -t
@@ -312,7 +313,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
     ![Nginx](assets/imagenes/practicas/Flask/Practica/image-27.png)
 
-7. Ya no podremos acceder por IP a nuestra aplicación ya que ahora está siendo servida por Gunicorn y Nginx, necesitamos acceder por su `server_name`. Puesto que aún no hemos tratado con el DNS, vamos a editar el archivo `/etc/hosts` de nuestra máquina anfitriona para que asocie la IP de la máquina virtual, a nuestro `server_name`.
+3. Ya no podremos acceder por IP a nuestra aplicación ya que ahora está siendo servida por Gunicorn y Nginx, necesitamos acceder por su `server_name`. Puesto que aún no hemos tratado con el DNS, vamos a editar el archivo `/etc/hosts` de nuestra máquina anfitriona para que asocie la IP de la máquina virtual, a nuestro `server_name`.
 
     Este archivo, en Linux, está en: `/etc/hosts`
 
@@ -326,7 +327,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
     donde debéis sustituir la IP por la que tenga vuestra máquina virtual.
 
-8. El último paso es comprobar que todo el desplieuge se ha realizado de forma correcta y está funcionando, para ello accedemos desde nuestra máquina anfitrión a:
+4. El último paso es comprobar que todo el desplieuge se ha realizado de forma correcta y está funcionando, para ello accedemos desde nuestra máquina anfitrión a:
 
     `http://nombre_aplicacion`
 
