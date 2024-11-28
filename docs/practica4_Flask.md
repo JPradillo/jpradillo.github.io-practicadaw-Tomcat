@@ -264,21 +264,22 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
 11. Creamos un archivo con el nombre de nuestra aplicación y dentro estableceremos la configuración para ese sitio web. El archivo, como recordáis, debe estar en `/etc/nginx/sites-available/nombre_aplicacion` y tras ello lo editamos para que quede:
  
-```
-server {
-    listen 80;
-    server_name mi_aplicacion www.mi_aplicacion; 
+    ```
+    server {
+        listen 80;
+        server_name mi_aplicacion www.mi_aplicacion; 
 
-    access_log /var/log/nginx/mi_aplicacion.access.log; 
-    error_log /var/log/nginx/mi_aplicacion.error.log;
+        access_log /var/log/nginx/mi_aplicacion.access.log; 
+        error_log /var/log/nginx/mi_aplicacion.error.log;
 
-    location / { 
-            include proxy_params;
-            proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; 
-    }
-}   
-```
-![sites-available](assets/imagenes/practicas/Flask/Practica/image-25.png)
+        location / { 
+                include proxy_params;
+                proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; 
+        }
+    }   
+    ```
+    
+    ![sites-available](assets/imagenes/practicas/Flask/Practica/image-25.png)
 
     !!! info "Información"
 
@@ -288,26 +289,27 @@ server {
 
        - proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; -> Bloque donde se le indica a Nginx que haga de proxy inverso hacia el socket creado en nuestra propia máquina por gunicorn para acceder a nuestra aplicación Flask.
   
-5. Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
+16. Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
    
-```
-sudo ln -s /etc/nginx/sites-available/nombre_aplicacion /etc/nginx/sites-enabled/
-```
-   
+    ```
+    sudo ln -s /etc/nginx/sites-available/nombre_aplicacion /etc/nginx/sites-enabled/
+    ```
+    
     Y nos aseguramos de que se ha creado dicho link simbólico:
 
-```
-ls -l /etc/nginx/sites-enabled/ | grep nombre_aplicacion
-```
+    ```
+    ls -l /etc/nginx/sites-enabled/ | grep nombre_aplicacion
+    ```
+
     ![Link simbólico](assets/imagenes/practicas/Flask/Practica/image-26.png)
 
 6. Nos aseguramos de que la configuración de Nginx no contiene errores, reiniciamos Nginx y comprobamos que se estado es activo:
 
-```
-nginx -t
-sudo systemctl restart nginx
-sudo systemctl status nginx
-```
+    ```
+    nginx -t
+    sudo systemctl restart nginx
+    sudo systemctl status nginx
+    ```
 
     ![Nginx](assets/imagenes/practicas/Flask/Practica/image-27.png)
 
@@ -355,107 +357,107 @@ sudo systemctl status nginx
 
         Y el resto sería proceder tal y como hemos hecho en esta práctica.
 
-    Clonamos el repositorio de git
+Clonamos el repositorio de git
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-30.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-30.png)
 
-    Tras clonar el repositorio debemos darle los permisos necesarios al directorio creado:
+Tras clonar el repositorio debemos darle los permisos necesarios al directorio creado:
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-31.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-31.png)
 
-    Activación del entorno virutal dentro del directorio del repositorio clonado
+Activación del entorno virutal dentro del directorio del repositorio clonado
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-32.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-32.png)
 
-    Instalamos flask y gunicorn
+Instalamos flask y gunicorn
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-35.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-35.png)
 
-    Para instalar las dependencias tenemos que utilizar el comando `pipenv install -r rquirements.txt` 
+Para instalar las dependencias tenemos que utilizar el comando `pipenv install -r rquirements.txt` 
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-33.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-33.png)
 
-    Creamos y configuramos el archivo wsgi.py correctamente
+Creamos y configuramos el archivo wsgi.py correctamente
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-36.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-36.png)
 
-    Iniciamos Gunicorn con el comando `gunicorn --workers 4 --bind 0.0.0.0:5000 wsgi:app`
+Iniciamos Gunicorn con el comando `gunicorn --workers 4 --bind 0.0.0.0:5000 wsgi:app`
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-37.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-37.png)
 
-    Desde nuestra máquina anfitiona accedemos a `http://<IP-del-servidor>:5000`
+Desde nuestra máquina anfitiona accedemos a `http://<IP-del-servidor>:5000`
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-38.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-38.png)
 
-    Tomamos nota de cual es el path desde donde se ejecuta `gunicorn` con el comando `which gunicorn` (`/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin/gunicorn`) en mi caso
+Tomamos nota de cual es el path desde donde se ejecuta `gunicorn` con el comando `which gunicorn` (`/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin/gunicorn`) en mi caso
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-39.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-39.png)
 
-    Tras ello salimos del entorno virtual
-    
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-40.png)
+Tras ello salimos del entorno virtual
 
-    Iniciamos Nginx
+![alt text](assets/imagenes/practicas/Flask/Practica/image-40.png)
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-41.png)
+Iniciamos Nginx
 
-    Creamos un archivo para que `systemd` corra Gunicorn como un servicio del sistema
+![alt text](assets/imagenes/practicas/Flask/Practica/image-41.png)
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-42.png)
+Creamos un archivo para que `systemd` corra Gunicorn como un servicio del sistema
 
-    Debemos poner algo como:
+![alt text](assets/imagenes/practicas/Flask/Practica/image-42.png)
+
+Debemos poner algo como:
 
 ```
-    [Unit]
-    Description=Practica-3-5.service - Una aplicacion flask de ejemplo con Gunicorn
-    After=network.target
+[Unit]
+Description=Practica-3-5.service - Una aplicacion flask de ejemplo con Gunicorn
+After=network.target
 
-    [Service]
-    User=usuario
-    Group=www-data
-    Enviroment="PATH=/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin"
-    WorkingDirectory=/var/www/Practica-3.5/
-    ExecStart=/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin/gunicorn --workers 3 --bind unix:/var/www/Practica-3.5.sock wsgi:app
+[Service]
+User=usuario
+Group=www-data
+Enviroment="PATH=/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin"
+WorkingDirectory=/var/www/Practica-3.5/
+ExecStart=/home/usuario/.local/share/virtualenvs/Practica-3.5-fn2PEgVy/bin/gunicorn --workers 3 --bind unix:/var/www/Practica-3.5.sock wsgi:app
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 ```
 
-    Habilitamos y iniciamos el servicio que acabamos de crear
+Habilitamos y iniciamos el servicio que acabamos de crear
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-43.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-43.png)
 
-    Creamos un archivo de configuración para Nginx
+Creamos un archivo de configuración para Nginx
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-44.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-44.png)
 
-    Creamos un enlace simpbólico para habilitar el sitio
+Creamos un enlace simpbólico para habilitar el sitio
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-45.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-45.png)
 
-    Verificamos y reiniciamos nginx
+Verificamos y reiniciamos nginx
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-46.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-46.png)
 
-    Configuración del archivo /etc/hosts de nuestra máquina anfitriona para comprobar que el despliegue ha sido exitoso
+Configuración del archivo /etc/hosts de nuestra máquina anfitriona para comprobar que el despliegue ha sido exitoso
 
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-47.png)
-
-    
-    Accedemos a http://practica-3.5 en nuestra máquina anfitriona para comprobar que el despliegue ha tenido éxito.
-    
-    ![alt text](assets/imagenes/practicas/Flask/Practica/image-48.png)
+![alt text](assets/imagenes/practicas/Flask/Practica/image-47.png)
 
 
-    !!! warning "Warning"
+Accedemos a http://practica-3.5 en nuestra máquina anfitriona para comprobar que el despliegue ha tenido éxito.
 
-        Documenta adecuadamente con explicaciones y capturas de pantalla los procesos de despliegue de ambas aplicaciones en Flask, así como las respuestas a las cuestiones planteadas.
+![alt text](assets/imagenes/practicas/Flask/Practica/image-48.png)
+
+
+!!! warning "Warning"
+
+    Documenta adecuadamente con explicaciones y capturas de pantalla los procesos de despliegue de ambas aplicaciones en Flask, así como las respuestas a las cuestiones planteadas.
 
 ## Cuestiones
 
-    !!! infor "Cuestion 1"
+!!! infor "Cuestion 1"
 
-        Busca, lee, entiende y explica qué es y para que sirve un servidor WSGI
+    Busca, lee, entiende y explica qué es y para que sirve un servidor WSGI
     
 WSGI (Web Server Gateway Interface) es un componente clave en el desarrollo web con Python. Es un intermediario entre servidor web (en nuestro caso Nginx) y las aplicaciones creadas con Python.
 
@@ -468,9 +470,9 @@ En resumen, es esencial para que una aplicación escrita en Python pueda ser des
 
 ## Tareas de ampliación
 
-    !!! infor "Ampliación"
+!!! infor "Ampliación"
 
-        Despliega cualquiera de las dos aplicaciones Flask presentadas aquí en Heroku.
+    Despliega cualquiera de las dos aplicaciones Flask presentadas aquí en Heroku.
 
 ## Referencias
 
