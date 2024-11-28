@@ -264,7 +264,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
 11. Creamos un archivo con el nombre de nuestra aplicación y dentro estableceremos la configuración para ese sitio web. El archivo, como recordáis, debe estar en `/etc/nginx/sites-available/nombre_aplicacion` y tras ello lo editamos para que quede:
  
-    ```
+    ```nginx
     server {
         listen 80;
         server_name mi_aplicacion www.mi_aplicacion; 
@@ -282,11 +282,8 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
     ![sites-available](assets/imagenes/practicas/Flask/Practica/image-25.png)
 
     !!! info "Información"
-
-       - server_name mi_aplicacion www.mi_aplicacion; -> Nombre del dominio, ya veremos más adelante como el DNS resolverá este nombre para acceder a nuestra aplicación.
-  
+       - server_name mi_aplicacion www.mi_aplicacion; -> Nombre del dominio, ya veremos más adelante como el DNS resolverá este nombre para acceder a nuestra aplicación.  
        - access_log /var/log/nginx/mi_aplicacion.access.log; -> Dónde estarán ubicados los logs de acceso y de errores.
-
        - proxy_pass http://unix:/var/www/nombre_aplicacion/nombre_aplicacion.sock; -> Bloque donde se le indica a Nginx que haga de proxy inverso hacia el socket creado en nuestra propia máquina por gunicorn para acceder a nuestra aplicación Flask.
   
 16. Recordemos que ahora debemos crear un link simbólico del archivo de sitios webs disponibles al de sitios web activos:
