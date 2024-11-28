@@ -108,7 +108,7 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
     ![Creación directorio mi_aplicacion](assets/imagenes/practicas/Flask/Practica/image-4.png)
 
 5. Al crearlo con `sudo`, los permisos pertenecen a root:
-   
+
    ```
    ls -la | grep jorge_mi_aplicacion
    ```
