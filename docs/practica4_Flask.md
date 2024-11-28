@@ -117,7 +117,9 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
 6. Hay que cambiarlo para que el dueño sea nuestro usuario (`usuario` en mi caso) y pertenezca al grupo `www-data`, el usuario usado por defecto por el servidor web para correr:
    
-    `sudo chown -R $USER:www-data /var/www/mi_aplicacion`
+    ```
+    sudo chown -R $USER:www-data /var/www/mi_aplicacion
+    ```
 
 ![Configuración pertenencia](assets/imagenes/practicas/Flask/Practica/image-6.png)
 
