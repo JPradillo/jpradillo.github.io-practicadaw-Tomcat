@@ -121,17 +121,19 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
     sudo chown -R $USER:www-data /var/www/mi_aplicacion
     ```
 
-![Configuración pertenencia](assets/imagenes/practicas/Flask/Practica/image-6.png)
+    ![Configuración pertenencia](assets/imagenes/practicas/Flask/Practica/image-6.png)
 
 7. Establecemos los permisos adecuados a este directorio, para que pueda ser leído por todo el mundo:
    
-`chmod -R 775 /var/www/mi_aplicacion`
+    ```
+    chmod -R 775 /var/www/mi_aplicacion
+    ```
     
-!!! warning "Warning"
+    !!! warning "Warning"
 
-    Es **indispensable** asignar estos permisos, de otra forma obtendríamos un error al acceder a la aplicación cuando pongamos en marcha **Nginx**
+        Es **indispensable** asignar estos permisos, de otra forma obtendríamos un error al acceder a la aplicación cuando pongamos en marcha **Nginx**
 
-![Permisos](assets/imagenes/practicas/Flask/Practica/image-7.png)
+    ![Permisos](assets/imagenes/practicas/Flask/Practica/image-7.png)
 
 8. Dentro del directorio de nuestra aplicación, creamos un archivo oculto `.env` que contendrá las variables de entorno necesarias:
    
@@ -141,8 +143,8 @@ Automáticamente crea y maneja un entorno virtual para tus proyectos, también p
 
 9. Editamos el archivo y añadimos las variables, indicando cuál es el archivo `.py` de la aplicación y el entorno, que en nuestro caso será producción:
 
-![nano .env](assets/imagenes/practicas/Flask/Practica/image-9.png)
-![cat .env](assets/imagenes/practicas/Flask/Practica/image-10.png)
+    ![nano .env](assets/imagenes/practicas/Flask/Practica/image-9.png)
+    ![cat .env](assets/imagenes/practicas/Flask/Practica/image-10.png)
 
     !!! infor "Nota"
 
